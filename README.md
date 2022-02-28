@@ -5,7 +5,7 @@ In context, your parents are busy workers and they get home really late. They al
 Behaviour                                 | Inputs                     | Output   
 
 ### LIVE PREVIEW
-Here is a working live demo: https://nriankiplangatnewsapp.herokuapp.com/
+Here is a working live demo: https://briankiplangatnewsapp.herokuapp.com/
 
 #### SITE
 
