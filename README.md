@@ -27,4 +27,4 @@ If interested clone it here [clone](https://github.com/briankiplangat/NewsApp)
 
 [MIT License](LICENSE)
 
-Copyright (c) 2021 [ BriKiplangat ]
+Copyright (c) 2021 [ BrianKiplangat ]
