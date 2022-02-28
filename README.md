@@ -21,7 +21,7 @@ If interested clone it here [clone](https://github.com/briankiplangat/NewsApp)
 
 
 # Built with
-1. [Flask](http://flask.pocoo.org/) - For bothbackendand fronted.
+1. [Flask](http://flask.pocoo.org/) - For both backend and frontend.
 1. [News API](https://newsapi.org/). News API provides a wonderful API that allows you to search worldwide news articles and headlines from all over the web in real-time.
 
 
