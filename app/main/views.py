@@ -27,7 +27,7 @@ def news_healines(source):
     """
     title = "News App"
     news_healines = get_all_news_headlines(source)
-    return render_template('news_articles.html', headlines=news_healines, title=title)
+    return render_template('articles.html', headlines=news_healines, title=title)
 
 
 @main.route('/search/<source_name>')
