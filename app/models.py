@@ -1,42 +1,26 @@
-class News:
+class Headlines:
     '''
-    News class to define News Objects
+    Defines new News objects
     '''
-
-    def __init__(self,title,image,description,date,article):
+    def __init__(self, author, title, description, url, urlToImage, publishedAt, content):
+        self.author = author
         self.title = title
-        self.image = image
         self.description = description
-        self.date = date
-        self.article = article
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = publishedAt 
+        self.content = content
 
+class Sources:
+    '''
+    Defines new Sources objects
+    '''
 
-class Review:
-
-    all_reviews = []
-
-    def __init__(self,news_id,title,imageurl,review):
-        self.news_id = news_id
-        self.title = title
-        self.imageurl = imageurl
-        self.review = review
-
-
-    def save_review(self):
-        Review.all_reviews.append(self)
-
-
-    @classmethod
-    def clear_reviews(cls):
-        Review.all_reviews.clear()
-
-    @classmethod
-    def get_reviews(cls,id):
-
-        response = []
-
-        for review in cls.all_reviews:
-            if review.news_id == id:
-                response.append(review)
-
-        return response
+    def __init__(self, source_id, name, description, url, category, language, country):
+        self.source_id = source_id
+        self.name = name
+        self.description = description
+        self.url = url
+        self.category = category
+        self.language = language
+        self.country = country

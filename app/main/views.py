@@ -1,55 +1,41 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template
 from . import main
-from ..request import get_news,get_news,get_article
-from .forms import ReviewForm
-from ..models import Review
+from ..request import get_headlines, get_headline, get_sources, get_sources_articles
 
-Review=Review
-
-
-
-# Views
-@main.route('/')
+#Views
+@main.route ('/')
 def index():
-
     '''
-    View root page function that returns the index page and its data
-    '''
-
-    # Getting news sources
-    popularity = get_news('popularity')
-    bitcoin = get_news('bitcoin')
-    business = get_news('business')
-    techcrunch = get_news('techcrunch')
-    wall_street = get_news('wsj')
-
-    title = 'Home - Welcome to The best News Review Website Online'
-
-    search_news = request.args.get('news_query')
-
-    if search_news:
-        return redirect(url_for('search', category_name = search_news))
-    else:
-        return render_template('index.html', title = title, popularity = popularity, bitcoin = bitcoin, business = business, techcrunch = techcrunch, wall_street = wall_street )
-
-
-@main.route('/new/articles/')
-def articles():
-
-    '''
-    View root page function that returns the index page and its data
+    Returns index page and its data
     '''
 
-    # Getting news sources
-    focus = get_news('focus')
-    techcrunch = get_news('techcrunch')
-    india = get_news('the-times-of-india')
+    #Getting headlines
+    news_headlines = get_headlines()
+    title = 'News Highlight- Fast and reliable way to get news'
+    return render_template('index.html', title = title, headlines = news_headlines)
 
-    title = 'Home - Welcome to The best News Review Website Online'
+@main.route ('/headlines/title')
+def headlines(title):
+    '''
+    View headlines page function that returns headlines details page and its data
+    '''
+    headline = get_article(title)
+    title = f'{article.title}'
 
-    search_news = request.args.get('news_query')
+    return render_template('headlines.html', title = title, headline = headline)
 
-    if search_news:
-        return redirect(url_for('search', category_name = search_news))
-    else:
-        return render_template('articles.html', title = title, focus = focus, techcrunch = techcrunch, india = india )
+@main.route ('/sources/<category>')
+def sources(category):
+    sources = get_sources(category)
+    title = category
+    return render_template('sources.html', sources = sources, title = title)
+
+@main.route("/sources_articles/articles/<id>")
+def source_articles(id):
+    """
+    View function for a specific source's articles
+    """
+    articles = get_sources_articles(id)
+    title = id
+    return render_template("source_articles.html", articles = articles, title=title)
+
