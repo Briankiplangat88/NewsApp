@@ -1,37 +1,63 @@
-{% import 'macros.html' as macro %}
-{% extends 'base.html' %}
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+<!-- Styles block -->
+
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+<!-- Content block -->
 {% block content %}
 
+<div class="container">
+    <!-- <form>
+        <input type="text" name="news_query" placeholder="Search for a News" class="form-control">
+        <input type="submit" value="Submit" class="btn btn-default">
+    </form> -->
 
-<div class="container-fluid">
-    <form>
-        <input type="text" name="article_query" placeholder="Search for an Article" class="form-control">
-        <input type="submit" value="Search" class="btn btn-default">
-    </form>
-    <div class="row">
-        <div class="container col-md-2 mb-12">
-            <div class="sidebar-sticky">
-                <nav class="d-none d-md-block sidebar" style="background-color:#fff">
-                    <h1 class=" text-muted" style="color:grey;">News Sources</h1>
-                    <hr>
-                    {{ macro.displayNewsSources(sources) }}
-                </nav>
-            </div>
-        </div>
-        <!--Grid column-->
-        <div class="col-lg-5 col-md-12 mb-12">
-            <h1 class="my-1">Whats up? Not blue sky! Its this...</h1>
-            <hr class="my-3">
-            {{ macro.displayNews(others) }}
 
-        </div>
-        <div class="col-lg-5 col-md-12 mb-12">
-            <h1 class="my-1">US on headlines and Count downs</h1>
-            <hr class="my-3">
-            {{ macro.displayNews(business_headliness) }}
-        </div>
+<div class="row">
+    
+        <!-- Popular News -->
+        <h3> Popular News</h3>
+        <ul>
+            {{ macro.displayNewsList(popularity)}}
+        </ul>
+    
 
-    </div>
+    <!-- Upcoming News  -->
+    <h3> Bit Coin News </h3>
+    <ul>
+        {{ macro.displayNewsList(bitcoin)}}
+    </ul>
+
+
+
+
+    <!-- Now showing News -->
+    <h3>Business News</h3>
+    <ul>
+        {{ macro.displayNewsList(business)}}
+    </ul>
+
+    
+
+    <!-- Now showing News -->
+    <h3>Tech Crunch News</h3>
+    <ul>
+        {{ macro.displayNewsList(techcrunch)}}
+    </ul>
+</div>
+<div class="row">
+    <!-- Now showing News -->
+    <h3>Wall Street News</h3>
+    <ul>
+        {{ macro.displayNewsList(wall_street)}}
+    </ul>
+</div>
 </div>
 
-{% endblock %}
+
+{% endblock%}

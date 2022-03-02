@@ -2,18 +2,18 @@ import os
 # os module will allow our application to interact with the
 # operating system
 
-
 class Config:
     """
     Config class will contain all(general) configurations/optimization
     that will will be used in Development stage and Production class.
-    """
+    """ 
+    NEWS_API_BASE_URL ='http://newsapi.org/v2/everything?q={}&from=2021-01-22&sortBy=publishedAt&apiKey={}'
+    ARTICLE_API_BASE_URL ='http://newsapi.org/v2/top-headlines?sources={}&apiKey={}'
     NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
-    SOURCES_BASE_API_URL = "https://newsapi.org/v2/sources?apiKey={}"
-    EVERYTHING_BASE_API_URL = "https://newsapi.org/v2/everything?domains=wsj.com&apikey={}"
-    TOP_HEADLINES_BASE_API_URL = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'
-    BUSINESS_TOP_HEADLINES = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey={}"
-
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    @staticmethod
+    def init_app(app):
+        pass    
 
 class ProdConfig(Config):
     """    

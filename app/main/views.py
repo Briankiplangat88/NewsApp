@@ -1,42 +1,55 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template,request,redirect,url_for
 from . import main
-from ..request import get_all_news_sources, get_all_news_headlines, get_everything_news, get_business_headlines, search_articles
+from ..request import get_news,get_news,get_article
+from .forms import ReviewForm
+from ..models import Review
+
+Review=Review
 
 
+
+# Views
 @main.route('/')
 def index():
-    """
-    This function views the root page that returns index.html page
-    and its data.
-    """
-    all_news_sources = get_all_news_sources()
-    everything_news_items = get_everything_news()
-    business_headliness = get_business_headlines()
-    title = "News App"
-    search_article = request.args.get('article_query')
-    if search_article:
-        return redirect(url_for('.search', source_name=search_article))
+
+    '''
+    View root page function that returns the index page and its data
+    '''
+
+    # Getting news sources
+    popularity = get_news('popularity')
+    bitcoin = get_news('bitcoin')
+    business = get_news('business')
+    techcrunch = get_news('techcrunch')
+    wall_street = get_news('wsj')
+
+    title = 'Home - Welcome to The best News Review Website Online'
+
+    search_news = request.args.get('news_query')
+
+    if search_news:
+        return redirect(url_for('search', category_name = search_news))
     else:
-        return render_template("index.html", sources=all_news_sources, title=title, others=everything_news_items, business_headliness=business_headliness)
+        return render_template('index.html', title = title, popularity = popularity, bitcoin = bitcoin, business = business, techcrunch = techcrunch, wall_street = wall_street )
 
 
-@main.route('/source/<source>')
-def news_healines(source):
-    """
-    This function retrieves live top and breaking headlines for a country.
-    """
-    title = "News App"
-    news_healines = get_all_news_headlines(source)
-    return render_template('articles.html', headlines=news_healines, title=title)
+@main.route('/new/articles/')
+def articles():
 
+    '''
+    View root page function that returns the index page and its data
+    '''
 
-@main.route('/search/<source_name>')
-def search(source_name):
-    """
-    View function to display search results.
-    """
-    source_name_list = source_name.split(" ")
-    source_name_format = "+".join(source_name_list)
-    searched_sources = search_articles(source_name_format)
-    title = f'search results for {source_name}'
-    return render_template('search.html', results=searched_sources)
+    # Getting news sources
+    focus = get_news('focus')
+    techcrunch = get_news('techcrunch')
+    india = get_news('the-times-of-india')
+
+    title = 'Home - Welcome to The best News Review Website Online'
+
+    search_news = request.args.get('news_query')
+
+    if search_news:
+        return redirect(url_for('search', category_name = search_news))
+    else:
+        return render_template('articles.html', title = title, focus = focus, techcrunch = techcrunch, india = india )
