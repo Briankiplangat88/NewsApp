@@ -12,7 +12,7 @@ sources_article_base_url = None
 
 def configure_request(app):
         global api_key, headlines_base_url, everything_base_url, sources_base_url, sources_article_base_url
-        api_key = 'c1105b28097b432b805ecbc526a1acb1'
+        api_key = 'c83fad95ed7240cfa152e2899e88b8ac'
         print(api_key)
         headlines_base_url = app.config["HEADLINES_API_BASE_URL"]
         print(headlines_base_url.format(api_key))
