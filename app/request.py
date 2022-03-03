@@ -18,7 +18,7 @@ def configure_request(app):
         print(headlines_base_url.format(api_key))
         everything_base_url = app.config["EVERYTHING_API_BASE_URL"]
         sources_base_url = app.config["SOURCES_API_BASE_URL"]
-        sources_article_base_url = app.config["SOURCES_ARTICLE_API_BASE_URL"]
+        sources_article_base_url = app.config["SOURCES_ARTICLES_API_BASE_URL"]
 
 
 def get_headlines():
@@ -134,5 +134,4 @@ def get_sources_articles(id):
         return headlines_results
 
         
-
 
